@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="تدابير للمقاولات العامة والتشطيبات - موقعنا قريباً">
+  <title>تدابير | قريباً</title>
+  <style>
+    @font-face {
+      font-family: "Cairo";
+      src: url("./fonts/CAIRO-SEMIBOLD.TTF") format("truetype");
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root {
+      --ink: #201f1f;
+      --muted: #666461;
+      --gold: #bd955b;
+      --gold-soft: #d4b47f;
+      --paper: #f7f5f1;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body { margin: 0; width: 100%; height: 100%; }
+
+    body {
+      min-width: 320px;
+      overflow: hidden;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: "Cairo", sans-serif;
+      font-weight: 600;
+    }
+
+    .page {
+      position: relative;
+      isolation: isolate;
+      height: 100vh;
+      height: 100svh;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      padding: clamp(12px, 2vh, 24px) 4vw;
+      background: url("./imgs/page-bg.webp") right bottom / 100% 100% no-repeat;
+    }
+
+    .page::before,
+    .page::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .page::after {
+      inset: 0;
+      background: radial-gradient(ellipse at 51% 50%, rgba(255,255,255,.78) 0 23%, rgba(255,255,255,.3) 44%, transparent 68%);
+    }
+
+    .content {
+      width: min(760px, 62vw);
+      margin-inline: auto;
+      transform: translateX(-1vw);
+      text-align: center;
+    }
+
+    .logo {
+      display: block;
+      width: clamp(188px, 16vw, 245px);
+      max-height: 235px;
+      object-fit: contain;
+      margin: 0 auto clamp(18px, 2.4vh, 30px);
+    }
+
+    h1 {
+      display: inline-block;
+      margin: 0;
+      font-size: clamp(62px, 6.1vw, 94px);
+      line-height: 1.2;
+      letter-spacing: 0;
+      color: var(--ink);
+      background: linear-gradient(90deg, var(--ink) 0 51%, #a77e45 66%, #d1a35f 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .rule {
+      position: relative;
+      height: 1px;
+      width: min(430px, 73%);
+      margin: 24px auto 17px;
+      background: linear-gradient(90deg, transparent, var(--gold-soft) 18%, var(--gold-soft) 82%, transparent);
+    }
+
+    .rule::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      border: 6px solid transparent;
+      border-top-color: var(--gold);
+      transform: translateX(-50%);
+    }
+
+    .lead {
+      margin: 0 0 5px;
+      font-size: clamp(20px, 1.8vw, 28px);
+      line-height: 1.55;
+    }
+
+    .sublead {
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(16px, 1.45vw, 22px);
+      line-height: 1.7;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      direction: ltr;
+      margin: clamp(28px, 4.5vh, 48px) auto clamp(28px, 4vh, 44px);
+      padding: 0;
+      list-style: none;
+    }
+
+    .feature {
+      position: relative;
+      direction: rtl;
+      display: grid;
+      align-content: start;
+      justify-items: center;
+      gap: 9px;
+      min-width: 0;
+      padding: 0 16px;
+      font-size: clamp(13px, 1.05vw, 17px);
+      white-space: nowrap;
+    }
+
+    .feature:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      top: 1px;
+      bottom: 1px;
+      right: 0;
+      width: 1px;
+      background: linear-gradient(transparent, rgba(189,149,91,.62) 17% 83%, transparent);
+    }
+
+    .feature svg {
+      width: 50px;
+      height: 50px;
+      fill: none;
+      stroke: var(--gold);
+      stroke-width: 1.65;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .follow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 22px;
+      margin-bottom: 16px;
+      font-size: 17px;
+    }
+
+    .follow::before, .follow::after {
+      content: "";
+      width: 122px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold));
+    }
+
+    .follow::after { transform: scaleX(-1); }
+
+    .socials { display: flex; direction: ltr; justify-content: center; gap: 38px; }
+
+    .socials a {
+      display: grid;
+      place-items: center;
+      width: 47px;
+      height: 47px;
+      color: var(--gold);
+      border: 2px solid var(--gold);
+      border-radius: 50%;
+      transition: color .2s, background-color .2s, transform .2s;
+    }
+
+    .socials a:hover, .socials a:focus-visible {
+      color: #fff;
+      background: var(--gold);
+      transform: translateY(-2px);
+      outline: none;
+    }
+
+    .socials svg { width: 25px; height: 25px; fill: currentColor; }
+
+    @media (max-height: 850px) and (min-width: 701px) {
+      .logo { width: 180px; max-height: 175px; margin-bottom: 12px; }
+      h1 { font-size: 68px; }
+      .rule { margin-block: 14px 10px; }
+      .lead { font-size: 20px; line-height: 1.4; }
+      .sublead { font-size: 16px; line-height: 1.5; }
+      .features { margin-block: 20px; }
+      .feature { gap: 5px; }
+      .feature svg { width: 42px; height: 42px; }
+      .follow { margin-bottom: 10px; }
+      .socials a { width: 40px; height: 40px; }
+      .socials svg { width: 21px; height: 21px; }
+    }
+
+    @media (max-width: 980px) {
+      .page { background-position: 68% bottom; }
+      .page::before { left: -27%; width: 39%; opacity: .95; }
+      .content { width: min(700px, 78vw); transform: none; }
+    }
+
+    @media (max-width: 700px) {
+      .page {
+        place-items: center;
+        padding: 14px 18px;
+        background:
+          linear-gradient(rgba(247,245,241,.92), rgba(247,245,241,.84)),
+          url("./imgs/page-bg.webp") 72% bottom / auto 68% no-repeat;
+      }
+    
+      .page::after { opacity: .55; }
+      .content { width: min(540px, 100%); }
+      .logo { width: min(165px, 39vw); max-height: 145px; margin-bottom: 10px; }
+      h1 { font-size: clamp(52px, 17vw, 72px); }
+      .rule { margin-block: 10px 5px; }
+      .features { grid-template-columns: repeat(2, 1fr); row-gap: 14px; margin-block: 18px; }
+      .feature svg { width: 42px; height: 42px; }
+      .follow { margin-bottom: 10px; }
+      .socials a { width: 41px; height: 41px; }
+      .feature { white-space: normal; line-height: 1.5; }
+      .feature:nth-child(even)::after { display: none; }
+      .socials { gap: 27px; }
+    }
+
+    @media (max-width: 390px) {
+      .features { grid-template-columns: 1fr; gap: 17px; }
+      .feature { grid-template-columns: 42px auto; align-items: center; justify-content: center; }
+      .feature::after { display: none; }
+      .feature svg { width: 40px; height: 40px; }
+      .follow { gap: 12px; }
+      .follow::before, .follow::after { width: 65px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="content" aria-labelledby="coming-soon">
+      <img class="logo" src="./imgs/tadabeer_logo_final color black.png" alt="تدابير للمقاولات العامة والتشطيبات">
+
+      <h1 id="coming-soon">قريباً</h1>
+      <div class="rule" aria-hidden="true"></div>
+      <p class="lead">نحن نعمل على شيء مميز</p>
+      <p class="sublead">موقعنا الإلكتروني تحت الإنشاء، ترقبوا القادم</p>
+
+      <ul class="features" aria-label="مميزات تدابير">
+        <li class="feature">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M6 42h36M10 42V18l14-8v32M24 15l14 7v20M15 22h3m-3 6h3m-3 6h3m11-7h4m-4 7h4M21 42v-6h6v6"/></svg>
+          <span>جودة في التنفيذ</span>
+        </li>
+        <li class="feature">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="17" r="6"/><path d="M13 40v-4c0-6 5-10 11-10s11 4 11 10v4M10 21a5 5 0 1 0 0-10m28 10a5 5 0 1 1 0-10M4 37v-3c0-5 3-8 8-8m32 11v-3c0-5-3-8-8-8"/></svg>
+          <span>فريق متخصص</span>
+        </li>
+        <li class="feature">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4c6 5 12 7 18 8v11c0 10-7 17-18 21C13 40 6 33 6 23V12c6-1 12-3 18-8Z"/><path d="m16 24 5 5 11-11"/></svg>
+          <span>إلتزام وموثوقية</span>
+        </li>
+        <li class="feature">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="8" width="34" height="31" rx="3"/><path d="M5 17h34M14 4v8m16-8v8M13 24h5m5 0h4m-14 7h5"/><circle cx="37" cy="36" r="8" fill="var(--paper)"/><path d="M37 32v5l3 2"/></svg>
+          <span>تسليم في الوقت المحدد</span>
+        </li>
+      </ul>
+
+      <div class="follow">تابعونا</div>
+      <nav class="socials" aria-label="روابط التواصل الاجتماعي">
+        <a href="#" aria-label="فيسبوك"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 8H17V4.5c-.43-.06-1.92-.2-3.68-.2-3.66 0-6.17 2.23-6.17 6.34V14H3v3.9h4.15V24h5.08v-6.1h4.24L17.14 14h-4.91v-2.98c0-1.13.3-1.9 2.27-1.9Z"/></svg></a>
+        <a href="#" aria-label="إنستغرام"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.67 4.77-4.92 4.92-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.69-4.92-4.92-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85C2.38 3.96 3.9 2.42 7.15 2.27 8.42 2.21 8.8 2.2 12 2.2Zm0 1.95c-3.15 0-3.52.01-4.76.07-2.24.1-2.95 1.2-3.05 3.05-.06 1.24-.07 1.61-.07 4.76s.01 3.52.07 4.76c.1 1.85.81 2.95 3.05 3.05 1.24.06 1.61.07 4.76.07s3.52-.01 4.76-.07c2.22-.1 2.95-1.18 3.05-3.05.06-1.24.07-1.61.07-4.76s-.01-3.52-.07-4.76c-.1-1.85-.81-2.95-3.05-3.05-1.24-.06-1.61-.07-4.76-.07Zm0 3.25a4.63 4.63 0 1 1 0 9.26 4.63 4.63 0 0 1 0-9.26Zm0 7.64a3.01 3.01 0 1 0 0-6.02 3.01 3.01 0 0 0 0 6.02Zm4.85-8.9a1.08 1.08 0 1 1 0 2.16 1.08 1.08 0 0 1 0-2.16Z"/></svg></a>
+        <a href="mailto:info@tadabeer.org" aria-label="البريد الإلكتروني"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a4 4 0 0 0-4 4v8a4 4 0 0 0 4 4h16a4 4 0 0 0 4-4V8a4 4 0 0 0-4-4Zm0 2-8 5L4 6h16Zm2 10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8l10 6.25L22 8v8Z"/></svg></a>
+      </nav>
+    </section>
+  </main>
+</body>
+</html>
